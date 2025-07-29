@@ -14,9 +14,28 @@ let package = Package(
         .library(name: "NVActivityIndicatorViewExtended", targets: ["NVActivityIndicatorViewExtended"])
     ],
     targets: [
-        .target(name: "NVActivityIndicatorView", path: "Sources/Base"),
-        .target(name: "NVActivityIndicatorViewExtended",
-                dependencies: ["NVActivityIndicatorView"],
-                path: "Sources/Extended")
+        .target(
+            name: "NVActivityIndicatorView",
+            path: "Sources/Base",
+            settings: .settings(
+                base: [
+                    "BUILD_LIBRARY_FOR_DISTRIBUTION": "YES",
+                    "DEFINES_MODULE": "YES",
+                    "SKIP_INSTALL": "NO"
+                ]
+            )
+        ),
+        .target(
+            name: "NVActivityIndicatorViewExtended",
+            dependencies: ["NVActivityIndicatorView"],
+            path: "Sources/Extended",
+            settings: .settings(
+                base: [
+                    "BUILD_LIBRARY_FOR_DISTRIBUTION": "YES",
+                    "DEFINES_MODULE": "YES",
+                    "SKIP_INSTALL": "NO"
+                ]
+            )
+        )
     ]
 )
